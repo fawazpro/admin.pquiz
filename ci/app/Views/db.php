@@ -20,50 +20,91 @@
                         <a href="quizinput" class="btn btn-primary btn-large"><?= strtoupper($quizinput ? $quizinput : 'Enable') ?></a>
                     </div>
                     <div class="col-md-6">
-                        <p>Send Out Participant(<?=$quizparticipants?>) Scores</p>
+                        <p>Send Out Participant(<?= $quizparticipants ?>) Scores</p>
                         <a href="sendscores" class="btn btn-warning btn-large">SEND</a>
                     </div>
                 </div>
 
             </div>
         </div>
-        
+
         <div class="card">
-                        <div class="card-body">
-                            <h6 class="card-title">Participants List</h6>
-                            <div class="table-responsive">
-                                <table id="recent" class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Email</th>
-                                            <th class="text-right">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php foreach ($users as $key => $user):?>
-                                        <tr>
-                                            <td><?=$user['email']?></td>
-                                            <td class="text-right">
-                                                <div class="dropdown">
-                                                    <a href="#" data-toggle="dropdown" class="btn btn-floating"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                        <i class="ti-more-alt"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <!-- <a href="#" class="dropdown-item">View Detail</a>
+            <div class="card-body">
+                <h6 class="card-title">Participants & Score List</h6>
+                <div class="table-responsive">
+                    <table id="recent" class="table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th class="text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($users as $key => $user) : ?>
+                                <tr>
+                                    <td><?= $user['email'] ?></td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a href="#" data-toggle="dropdown" class="btn btn-floating" aria-haspopup="true" aria-expanded="false">
+                                                <i class="ti-more-alt"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <!-- <a href="#" class="dropdown-item">View Detail</a>
                                                         <a href="#" class="dropdown-item">Send</a>
                                                         <a href="#" class="dropdown-item">Edit</a> -->
-                                                        <a href="#" class="dropdown-item text-danger">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Score Sheet</h6>
+                <div class="table-responsive">
+                    <table id="recent" class="table">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Score</th>
+                                <th>Sent Mail</th>
+                                <th class="text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($score as $key => $user) : ?>
+                                <tr>
+                                    <td><?= $user['email'] ?></td>
+                                    <td><?= $user['password'] ?></td>
+                                    <td><?= $user['score'] ?></td>
+                                    <td><?= $user['sent'] ?></td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a href="#" data-toggle="dropdown" class="btn btn-floating" aria-haspopup="true" aria-expanded="false">
+                                                <i class="ti-more-alt"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <!-- <a href="#" class="dropdown-item">View Detail</a>
+                                                        <a href="#" class="dropdown-item">Send</a>
+                                                        <a href="#" class="dropdown-item">Edit</a> -->
+                                                <a href="#" class="dropdown-item text-danger">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- ./ Content -->
 
