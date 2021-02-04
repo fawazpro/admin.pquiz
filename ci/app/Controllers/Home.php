@@ -88,8 +88,8 @@ class Home extends BaseController
 			$data = [
 				'quizinput' => $var->where('key', 'quizinput')->find()[0]['value'],
 				'quizparticipants' => count($scoresheet->where('sent', '0')->find()),
-				'score' => $scoresheet->join('users','users.id = scoresheet.user')->findAll(),
-				'users' => $user->where('clearance','1')->findAll(),
+				'score' => $scoresheet->join('users', 'users.id = scoresheet.user')->findAll(),
+				'users' => $user->where('clearance', '1')->findAll(),
 			];
 
 			echo view('header');
@@ -259,24 +259,30 @@ class Home extends BaseController
 				$db = $users->where('id', $rs['user'])->find();
 				$data = [
 					'to' => $db[0]['email'],
-					'type' => 'text',
-					'subject' => 'A test mail',
-					'message' => ['p1' => 'This message is forwarded as a test mail. Your password can be reset using the link below'],
+					'type' => 'link',
+					'subject' => 'Score Released - PHF Ogun Quiz',
+
+					// 	p1 -- Paragraph 1
+					// 	p2 -- Paragraph 2
+					// 	p3 -- Paragraph 3
+					// 	link -- href link
+					// 	linktext -- Display Text
+					'message' => ['p1' => 'Your score has been released for PHF Ogun Weekly Quiz #4', 'p2'=>'Your Score is '.$rs['score'].'/15.', 'p3' => 'Do join us next week for another exciting edition.', 'link'=>'https://docs.google.com/document/d/1LxFeWAC4_gKOIv82p0UE8YbT-Sac_u-DVcFAMpjUL7s/edit?usp=sharing', 'linktext'=>'Click here for answers to the questions'],
 					'response' => [
 						'title' => 'Scores Sent',
 						'msg' => 'All scores has been sent out to the provided email',
 						'url' => base_url('login'),
 					]
 				];
-				if($this->mailer($data)){
-					$scoresheet->update($rs['id'],['sent'=>'1']);
+				if ($this->mailer($data)) {
+					$scoresheet->update($rs['id'], ['sent' => '1']);
 				}
 			}
-		$this->msg([
-			'title' => 'Scores Sent',
-			'msg' => 'All scores has been sent out to the provided email',
-			'url' => base_url('login'),
-		]);
+			$this->msg([
+				'title' => 'Scores Sent',
+				'msg' => 'All scores has been sent out to the provided email',
+				'url' => base_url('login'),
+			]);
 		} else {
 			$this->login();
 		}
@@ -295,11 +301,11 @@ class Home extends BaseController
 
 		if ($email->send()) {
 			return 1;
-		}else{
+		} else {
 			return 0;
 		}
 		// $this->msg($data['response']);
-		
+
 		echo $email->printDebugger(['headers', 'subject', 'body']);
 	}
 
