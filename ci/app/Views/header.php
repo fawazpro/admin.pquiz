@@ -112,7 +112,7 @@
 
                     <div class="header-logo">
                         <a href="index.html">
-                            <img class="logo" src="assets/media/image/logo.png" alt="logo" />
+                            <img class="logo" src="assets/media/image/logo.png" alt="logo" width="20%" />
                         </a>
                     </div>
                 </div>

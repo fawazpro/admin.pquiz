@@ -36,6 +36,7 @@ $routes->get('/que', 'Home::questions');
 $routes->get('/editque', 'Home::editquestions');
 $routes->get('/sendscores', 'Home::sendscores');
 $routes->get('/quizinput', 'Home::quizinput');
+$routes->get('/cards', 'Home::cards');
 $routes->post('/updatequestions', 'Home::updatequestions');
 $routes->post('/questions', 'Home::postquestions');
 $routes->post('/login', 'Home::postlogin');

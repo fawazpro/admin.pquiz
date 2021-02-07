@@ -23,6 +23,28 @@ class Home extends BaseController
 		echo view('login');
 	}
 
+	public function cards()
+	{
+		$var = new \App\Models\Variables();
+		$scoresheet = new \App\Models\Scoresheet();
+		$user = new \App\Models\Users();
+		$session = session();
+		if ($session->logged_in == TRUE) {
+			$data = [
+				'quizinput' => $var->where('key', 'quizinput')->find()[0]['value'],
+				'quizparticipants' => count($scoresheet->where('sent', '0')->find()),
+				'score' => $scoresheet->join('users', 'users.id = scoresheet.user')->findAll(),
+				'users' => $user->where('clearance', '1')->findAll(),
+			];
+
+			echo view('header');
+			echo view('sidebar');
+			echo view('cards');
+		} else {
+			$this->login();
+		}
+	}
+
 
 	public function postlogin()
 	{
