@@ -17,7 +17,7 @@
         <form id="details">
             <fieldset>
                 <label for="">Background Color</label>
-                <input type="color" id="color">
+                <input type="color" id="color" value="#8daef3">
             </fieldset>
             <fieldset>
                 <label for="">Page Number</label>
@@ -26,6 +26,22 @@
             <fieldset>
                 <label for="">Question</label>
                 <input type="text" id="title">
+            </fieldset>
+            <fieldset>
+                <label for="">Option A </label>
+                <input type="text" id="opta">
+            </fieldset>
+            <fieldset>
+                <label for="">Option B </label>
+                <input type="text" id="optb">
+            </fieldset>
+            <fieldset>
+                <label for="">Option C </label>
+                <input type="text" id="optc">
+            </fieldset>
+            <fieldset>
+                <label for="">Option D </label>
+                <input type="text" id="optd">
             </fieldset>
             <fieldset>
                 <label for="">Answer</label>
@@ -39,7 +55,7 @@
             <input type="submit" value="Create Image" id="createImg">
         </form>
         <div class="dp"
-            style="padding: 0; border-radius: 2rem;  background-color:rgb(224, 235, 219); color: #000; width: 800px; height: 800px; font-family: 'lato','Titillium web';  padding-top: 15px;"
+            style="padding: 0; border-radius: 2rem;  background-color: rgb(141, 174, 243); color: #000; width: 800px; height: 800px; font-family: 'lato','Titillium web';  padding-top: 15px;"
             id="dp">
 
             <img id="background" src="" style="margin-top: 650px; padding: 0; position: absolute; z-index: 5;">
@@ -56,20 +72,31 @@
 
 
             <div class="content"
-                style="background-color: #fff; display: block; justify-content: space-around; position: absolute; margin-top: 40px; width:600px; height:500px; margin-left: 90px; border-radius: 1.5rem; bottom:1; left:1; z-index: 1; text-align: center;">
+                style="background-color: #fff; display: block; justify-content: space-around; position: absolute; margin-top: 40px; width:600px; height:500px; margin-left: 90px; border-radius: 1.5rem; bottom:1; left:1; z-index: 1; text-align: center; font-family: 'Montserrat';">
 
                 <!-- <img src=".png" width="200px" style="left: 0px; top: 0px; position: absolute;"> -->
 
                 <p style="font-size: 2.5rem;">
-                    Question: <span id="titleText"></span>
+                    Question: <br><span id="titleText"></span>
+                </p>
+                <p style="font-size: 2.0rem; margin-left: 140px; margin-top: 0px; margin-bottom: 20px;   padding-bottom: 0px; text-align: left;">
+                    A) <span id="optaText"></span>
+                </p>
+                <p style="font-size: 2.0rem; margin-left: 140px; margin-top: 0px; margin-bottom: 20px;  text-align: left;">
+                    B) <span id="optbText"></span>
+                </p>
+                <p style="font-size: 2rem; margin-left: 140px; margin-top: 0px; margin-bottom: 20px;   text-align: left;">
+                    C) <span id="optcText"></span>
+                </p>
+                <p style="font-size: 2rem; margin-left: 140px; margin-top: 0px; margin-bottom: 20px;   text-align: left;">
+                    D) <span id="optdText"></span>
                 </p>
 
-                <div
-                    style="position:absolute; margin-top: 300px; margin-left: 300px; color:#000; text-decoration-style: double; font-size: 1.5rem;">
-                    <p style="color:#ccc" id="content1Text">Price?🤔 Colour?🎈 Size?🎁 </p>
-
+                
+            </div><div
+                    style="position:absolute; margin-top: 515px; margin-left: 400px; font-size: 1.5rem; z-index: 2;">
+                    <p style="color:#ccc" id="content1Text">Answer goes here</p>
                 </div>
-            </div>
 
             <div class="bottom-logo" style="position: absolute; font-family: 'Montserrat'; margin-left: 90px; margin-top: 555px; z-index: 1; display: flex; flex-direction: row;">
                 <img src="media/image/logo.png" width="80px" alt=""> <p style="padding-top: 10px; padding-left: 5px;">PHF Ogun <br> <i style="font-size: 0.8rem;">Returning to Allah with pure heart</i></p> 

@@ -77,5 +77,9 @@ form.submit(function (e) {
     titleText.html(titleValue);
     content1Text.html(content1Value);
     content2Text.html(content2Value);
+    $('#optaText').html($('#opta').val());
+    $('#optbText').html($('#optb').val());
+    $('#optcText').html($('#optc').val());
+    $('#optdText').html($('#optd').val());
 });
 
