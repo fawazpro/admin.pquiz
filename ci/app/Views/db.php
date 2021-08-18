@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="card">
+        <!-- <div class="card">
             <div class="card-body">
                 <h6 class="card-title">Participants & Score List</h6>
                 <div class="table-responsive">
@@ -49,9 +49,9 @@
                                                 <i class="ti-more-alt"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <!-- <a href="#" class="dropdown-item">View Detail</a>
+                                                <a href="#" class="dropdown-item">View Detail</a>
                                                         <a href="#" class="dropdown-item">Send</a>
-                                                        <a href="#" class="dropdown-item">Edit</a> -->
+                                                        <a href="#" class="dropdown-item">Edit</a>
                                                 <a href="#" class="dropdown-item text-danger">Delete</a>
                                             </div>
                                         </div>
@@ -62,11 +62,24 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="card">
             <div class="card-body">
                 <h6 class="card-title">Score Sheet</h6>
+                <form action="getsc" method="post">
+                    <div class="form-group">
+                        <label for="scoresheet">Quiz Scoresheet</label>
+                        <select class="form-control form-control-lg" name="scoresheet" id="scoresheet">
+                            <option>Select a quiz</option>
+                            <?php foreach ($quiz as $key => $qui): ?>
+                            <option value="<?=$qui['id']?>"><?=$qui['code']?> - <?=$qui['title']?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Retrieve</button>
+                </form>
+
                 <div class="table-responsive">
                     <table id="recent" class="table">
                         <thead>

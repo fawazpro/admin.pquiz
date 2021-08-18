@@ -12,7 +12,7 @@
             <div class="navigation-menu-body">
                 <ul>
                     <li>
-                        <a href="/">
+                        <a href="index">
                             <span class="nav-link-icon">
                                 <i data-feather="pie-chart"></i>
                             </span>

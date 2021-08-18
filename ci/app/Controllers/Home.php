@@ -100,17 +100,20 @@ class Home extends BaseController
 		echo view('msg', $data);
 	}
 
-	public function dashboard()
+	public function dashboard($quizid = 0)
 	{
 		$var = new \App\Models\Variables();
+		$Quiz = new \App\Models\Quiz();
 		$scoresheet = new \App\Models\Scoresheet();
 		$user = new \App\Models\Users();
 		$session = session();
+		$qlast = $quizid ? $quizid : $Quiz->orderBy('id', 'desc')->first()['id'];
 		if ($session->logged_in == TRUE) {
 			$data = [
 				'quizinput' => $var->where('key', 'quizinput')->find()[0]['value'],
+				'quiz' => $Quiz->findAll(),
 				'quizparticipants' => count($scoresheet->where('sent', '0')->find()),
-				'score' => $scoresheet->join('users', 'users.id = scoresheet.user')->where('quiz', '8')->findAll(),
+				'score' => $scoresheet->join('users', 'users.id = scoresheet.user')->where('quiz', $qlast)->findAll(),
 				'users' => $user->where('clearance', '1')->findAll(),
 			];
 
@@ -120,6 +123,12 @@ class Home extends BaseController
 		} else {
 			$this->login();
 		}
+	}
+
+	public function getscoresheet()
+	{	
+		$incoming = $this->request->getPost('scoresheet');
+		$this->dashboard($incoming);
 	}
 
 	public function questions()

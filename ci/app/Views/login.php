@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RayyanTech Dashboard</title>
+    <title>PHF Ogun Quiz || RayyanTech Dashboard</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/media/image/favicon.png"/>
@@ -27,7 +27,7 @@
 
     <!-- logo -->
     <div id="logo">
-        <img src="assets/media/image/dark-logo.png" alt="image">
+    <img class="logo" src="assets/media/image/logo.png" alt="logo" width="20%" />
     </div>
     <!-- ./ logo -->
 
