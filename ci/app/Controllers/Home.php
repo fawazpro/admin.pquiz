@@ -45,6 +45,7 @@ class Home extends BaseController
 		}
 	}
 
+
 	public function postlogin()
 	{
 		$users = new \App\Models\Users();
@@ -288,7 +289,7 @@ class Home extends BaseController
 					// 	p3 -- Paragraph 3
 					// 	link -- href link
 					// 	linktext -- Display Text
-					'message' => ['p1' => 'Your score has been released for PHF Ogun Weekly Quiz #4', 'p2'=>'Your Score is '.$rs['score'].'/15.', 'p3' => 'Do join us next week for another exciting edition.', 'link'=>'https://docs.google.com/document/d/1LxFeWAC4_gKOIv82p0UE8YbT-Sac_u-DVcFAMpjUL7s/edit?usp=sharing', 'linktext'=>'Click here for answers to the questions'],
+					'message' => ['p1' => 'Your score has been released for PHF Ogun Weekly Quiz', 'p2'=>'Your Score is '.$rs['score'].'/15.', 'p3' => 'Do join us next week evening for another exciting edition.', 'link'=>'https://docs.google.com/document/d/1LxFeWAC4_gKOIv82p0UE8YbT-Sac_u-DVcFAMpjUL7s/edit?usp=sharing', 'linktext'=>'Click here for answers to the questions'],
 					'response' => [
 						'title' => 'Scores Sent',
 						'msg' => 'All scores has been sent out to the provided email',
