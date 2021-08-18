@@ -45,7 +45,6 @@ class Home extends BaseController
 		}
 	}
 
-
 	public function postlogin()
 	{
 		$users = new \App\Models\Users();
@@ -110,7 +109,7 @@ class Home extends BaseController
 			$data = [
 				'quizinput' => $var->where('key', 'quizinput')->find()[0]['value'],
 				'quizparticipants' => count($scoresheet->where('sent', '0')->find()),
-				'score' => $scoresheet->join('users', 'users.id = scoresheet.user')->findAll(),
+				'score' => $scoresheet->join('users', 'users.id = scoresheet.user')->where('quiz', '8')->findAll(),
 				'users' => $user->where('clearance', '1')->findAll(),
 			];
 
