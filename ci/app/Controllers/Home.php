@@ -279,6 +279,33 @@ class Home extends BaseController
 		}
 	}
 
+	public function test($code, $do)
+	{
+		if ($do) {
+			$key = ' !u^e_%a#t@';
+			$pos = str_split($code);
+			$res = '';
+			foreach ($pos as $ky => $ps) {
+				$res = $res . str_split($key)[$ps];
+			}
+			return urlencode($res);
+		} else {
+			$key = ' !u^e_%a#t@';
+			$pos = urldecode($code);
+			$res = '';
+			$pos = str_split($pos);
+			$key = str_split($key);
+			foreach ($pos as $k => $os) {
+				foreach ($key as $ky => $ps) {
+					if ($pos[$k] == $ps)
+						$res = $res . $ky;
+				}
+			}
+			return $res;
+		}
+	}
+
+
 	public function sendscores($quizid = 0)
 	{
 		$session = session();
@@ -288,26 +315,14 @@ class Home extends BaseController
 			$Quiz = new \App\Models\Quiz();
 			$qlast = $quizid ? $quizid :  $Quiz->orderBy('id', 'desc')->first()['code'];
 			$res = $scoresheet->where('sent', '0')->find();
-
-			$config         = new \Config\Encryption();
-			$config->key    = 'pureheartislamicfoundation';
-			$encrypter = \Config\Services::encrypter($config);
-			$plainText = $qlast;
-			$ciphertext = $encrypter->encrypt($plainText);
 	
-			$coo = urlencode($ciphertext) ;
+			$coo = $this->test($qlast,1);
 			foreach ($res as $key => $rs) {
 				$db = $users->where('id', $rs['user'])->find();
 				$data = [
 					'to' => $db[0]['email'],
 					'type' => 'link',
 					'subject' => 'Score Released - PHF Ogun Quiz',
-
-					// 	p1 -- Paragraph 1
-					// 	p2 -- Paragraph 2
-					// 	p3 -- Paragraph 3
-					// 	link -- href link
-					// 	linktext -- Display Text
 					'message' => ['p1' => 'Your score has been released for PHF Ogun Monthly Quiz', 'p2'=>'Your Score is '.$rs['score'].'/15.', 'p3' => 'Do join us next Month for another exciting edition.', 'link'=>'https://quiz.phfogun.org/solution/'.$coo.'', 'linktext'=>'Click here for answers to the questions'],
 					'response' => [
 						'title' => 'Scores Sent',
