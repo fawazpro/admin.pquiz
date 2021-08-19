@@ -279,13 +279,23 @@ class Home extends BaseController
 		}
 	}
 
-	public function sendscores()
+	public function sendscores($quizid = 0)
 	{
 		$session = session();
 		if ($session->logged_in == TRUE) {
 			$scoresheet = new \App\Models\Scoresheet();
 			$users = new \App\Models\Users();
+			$Quiz = new \App\Models\Quiz();
+			$qlast = $quizid ? $quizid :  $Quiz->orderBy('id', 'desc')->first()['code'];
 			$res = $scoresheet->where('sent', '0')->find();
+
+			$config         = new \Config\Encryption();
+			$config->key    = 'pureheartislamicfoundation';
+			$encrypter = \Config\Services::encrypter($config);
+			$plainText = $qlast;
+			$ciphertext = $encrypter->encrypt($plainText);
+	
+			$coo = urlencode($ciphertext) ;
 			foreach ($res as $key => $rs) {
 				$db = $users->where('id', $rs['user'])->find();
 				$data = [
@@ -298,7 +308,7 @@ class Home extends BaseController
 					// 	p3 -- Paragraph 3
 					// 	link -- href link
 					// 	linktext -- Display Text
-					'message' => ['p1' => 'Your score has been released for PHF Ogun Monthly Quiz', 'p2'=>'Your Score is '.$rs['score'].'/15.', 'p3' => 'Do join us next Month for another exciting edition.', 'link'=>'https://docs.google.com/document/d/1LxFeWAC4_gKOIv82p0UE8YbT-Sac_u-DVcFAMpjUL7s/edit?usp=sharing', 'linktext'=>'Click here for answers to the questions'],
+					'message' => ['p1' => 'Your score has been released for PHF Ogun Monthly Quiz', 'p2'=>'Your Score is '.$rs['score'].'/15.', 'p3' => 'Do join us next Month for another exciting edition.', 'link'=>'https://quiz.phfogun.org/solution/'.$coo.'', 'linktext'=>'Click here for answers to the questions'],
 					'response' => [
 						'title' => 'Scores Sent',
 						'msg' => 'All scores has been sent out to the provided email',
